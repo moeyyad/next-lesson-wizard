@@ -2,8 +2,12 @@ import LessonWizard from "@/components/LessonWizard";
 
 export default function IntroToPositivePsychologyPage() {
   return (
-    <LessonWizard>
-      <h1>Intro to Positive Psychology</h1>
+    <LessonWizard title="Introduction to Positive Psychology">
+      <p>Page 1</p>
+      <p>Page 2</p>
+      <p>Page 3</p>
+      <p>Page 4</p>
+      <p>Page 5</p>
     </LessonWizard>
   );
 }
