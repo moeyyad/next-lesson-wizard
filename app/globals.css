@@ -31,5 +31,17 @@ body {
 }
 
 .lesson-content {
-  @apply max-w-4xl w-full mx-auto px-4 sm:px-8 pb-32;
+  @apply max-w-4xl w-full mx-auto px-4 sm:px-8 pb-32 space-y-6;
+}
+
+.lesson-content h3 {
+  @apply text-base font-semibold text-neutral-900; 
+}
+ 
+.lesson-content h4 { 
+  @apply text-base text-neutral-900;
+} 
+
+.lesson-content p {
+  @apply text-base text-neutral-900;
 }

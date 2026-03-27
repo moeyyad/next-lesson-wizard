@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, createContext, useContext, Children } from "react";
+import { useState, useEffect, useRef, createContext, useContext, Children } from "react";
 import { X, CircleCheckBig, XCircle, ChevronLeft, ChevronRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 
@@ -69,8 +69,8 @@ const LessonControlBar = ({ onPrevious, onNext, isFirstPage, isLastPage, lessonP
       { lessonPageStatus === "correct" && (
         <div className="bg-emerald-200">
           <div className="max-w-4xl w-full mx-auto flex items-center gap-2 px-4 sm:px-8 py-2">
-            <CircleCheckBig className="h-6 w-6 text-emerald-900" />
-            <span className="text-base font-medium text-emerald-900">Well Done</span>
+            <CircleCheckBig className="h-6 w-6 text-emerald-700" />
+            <span className="text-base font-medium text-emerald-700">Well Done</span>
           </div>
         </div>
       )}
@@ -78,8 +78,8 @@ const LessonControlBar = ({ onPrevious, onNext, isFirstPage, isLastPage, lessonP
       { lessonPageStatus === "incorrect" && (
         <div className="bg-rose-200">
           <div className="max-w-4xl w-full mx-auto flex items-center gap-2 px-4 sm:px-8 py-2">
-            <XCircle className="h-6 w-6 text-rose-900" />
-            <span className="text-base font-medium text-rose-900">Not Quite</span>
+            <XCircle className="h-6 w-6 text-rose-700" />
+            <span className="text-base font-medium text-rose-700">Not Quite</span>
           </div>
         </div>
       )}
@@ -120,6 +120,29 @@ export default function LessonWizard({ title, children }: LessonWizardProps) {
   const [currentPageIndex, setCurrentPageIndex] = useState(0);
   const [lessonPageStatus, setLessonPageStatus] = useState<LessonPageStatus>("default");
 
+  const correctAudioRef = useRef<HTMLAudioElement>(null);
+  const incorrectAudioRef = useRef<HTMLAudioElement>(null);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [currentPageIndex]);
+
+  const playSound = (audioRef: React.RefObject<HTMLAudioElement | null>) => {
+    if (!audioRef.current) return;
+
+    audioRef.current.currentTime = 0;
+    void audioRef.current.play();
+  }
+
+  useEffect(() => {
+    if (lessonPageStatus === "correct") {
+      playSound(correctAudioRef);
+    }
+    if (lessonPageStatus === "incorrect") {
+      playSound(incorrectAudioRef);
+    }
+  }, [lessonPageStatus]);
+
   if (currentPageIndex === lessonPages.length) {
     return <LessonCompleteScreen />
   }
@@ -141,6 +164,9 @@ export default function LessonWizard({ title, children }: LessonWizardProps) {
 
   return (
     <>
+      <audio ref={correctAudioRef} src="/correct.mp3" preload="auto" />
+      <audio ref={incorrectAudioRef} src="/incorrect.mp3" preload="auto" />
+      
       <LessonHeader percentage={percentage} lessonTitle={title} />
       <LessonWizardContext.Provider value={{ lessonPageStatus, setLessonPageStatus }}>
         {currentPage}
