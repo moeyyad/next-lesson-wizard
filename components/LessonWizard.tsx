@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useEffect, useRef, createContext, useContext, Children } from "react";
-import { X, CircleCheckBig, XCircle, ChevronLeft, ChevronRight } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { X, CircleCheckBig, XCircle, ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 type LessonPageStatus = "default" | "unanswered" | "correct" | "incorrect";
 
@@ -34,22 +34,21 @@ export const useLessonWizardContext = () => {
   return context;
 }
 
-const LessonHeader = ({ percentage, lessonTitle }: { percentage: number, lessonTitle: string }) => {
-  const router = useRouter();
+const LessonHeader = ({ progress, lessonTitle }: { progress: number, lessonTitle: string }) => {
   return (
     <div className="sticky top-0 w-full bg-white z-10">
       <div className="max-w-4xl w-full mx-auto px-4 sm:px-8 pt-4 sm:pt-8 pb-4">
         <div className="flex items-center justify-between">
-          <button
-            onClick={() => router.push('/')}
+          <Link
+            href="/"
             className="pr-2 text-neutral-400 hover:text-neutral-700 transition-colors cursor-pointer"
           >
             <X size={24} />
-          </button>
+          </Link>
           <div className="w-full bg-neutral-200 rounded-full h-4">
             <div
               className="bg-neutral-900 h-full rounded-full transition-all duration-300 ease-in-out"
-              style={{ width: `${percentage}%` }}
+              style={{ width: `${progress}%` }}
             />
           </div>
         </div>
@@ -108,8 +107,18 @@ const LessonControlBar = ({ onPrevious, onNext, isFirstPage, isLastPage, lessonP
 
 const LessonCompleteScreen = () => {
   return (
-    <div>
-      Complete
+    <div className="flex flex-1 items-center justify-center">
+      <div className="flex flex-col max-w-sm w-full items-center text-center p-4 sm:p-8">
+        <div className="text-6xl mb-8">🎉</div>
+        <h1 className="text-4xl font-semibold tracking-tight text-neutral-900 mb-12">Lesson Complete!</h1>
+        <Link 
+          href="/"
+          className="flex w-full items-center justify-center gap-2 rounded-full bg-neutral-900 px-4 py-3 text-base text-white hover:bg-neutral-700 cursor-pointer"
+        >
+          Continue
+          <ArrowRight className="h-4 w-4" />
+        </Link>
+      </div>
     </div>
   )
 }
@@ -120,8 +129,11 @@ export default function LessonWizard({ title, children }: LessonWizardProps) {
   const [currentPageIndex, setCurrentPageIndex] = useState(0);
   const [lessonPageStatus, setLessonPageStatus] = useState<LessonPageStatus>("default");
 
+  const isLessonComplete = currentPageIndex === lessonPages.length;
+
   const correctAudioRef = useRef<HTMLAudioElement>(null);
   const incorrectAudioRef = useRef<HTMLAudioElement>(null);
+  const completeAudioRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -143,8 +155,19 @@ export default function LessonWizard({ title, children }: LessonWizardProps) {
     }
   }, [lessonPageStatus]);
 
-  if (currentPageIndex === lessonPages.length) {
-    return <LessonCompleteScreen />
+  useEffect(() => {
+    if (isLessonComplete) {
+      playSound(completeAudioRef);
+    }
+  }, [isLessonComplete]);
+
+  if (isLessonComplete) {
+    return (
+      <>
+        <audio ref={completeAudioRef} src="/complete.mp3" preload="auto" />
+        <LessonCompleteScreen />
+      </>
+    )
   }
 
   const handleNextPage= () => {
@@ -160,14 +183,14 @@ export default function LessonWizard({ title, children }: LessonWizardProps) {
   const currentPage = lessonPages[currentPageIndex];
   const isFirstPage = currentPageIndex === 0;
   const isLastPage = currentPageIndex === lessonPages.length - 1;
-  const percentage = Math.round(((currentPageIndex + 1) / lessonPages.length) * 100);
+  const progress = Math.round(((currentPageIndex + 1) / lessonPages.length) * 100);
 
   return (
     <>
       <audio ref={correctAudioRef} src="/correct.mp3" preload="auto" />
       <audio ref={incorrectAudioRef} src="/incorrect.mp3" preload="auto" />
-      
-      <LessonHeader percentage={percentage} lessonTitle={title} />
+
+      <LessonHeader progress={progress} lessonTitle={title} />
       <LessonWizardContext.Provider value={{ lessonPageStatus, setLessonPageStatus }}>
         {currentPage}
       </LessonWizardContext.Provider>
