@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef, createContext, useContext, Children } from "react";
 import { X, CircleCheckBig, XCircle, ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 import Link from "next/link";
+import Confetti from "react-confetti";
 
 type LessonPageStatus = "default" | "unanswered" | "correct" | "incorrect";
 
@@ -108,6 +109,12 @@ const LessonControlBar = ({ onPrevious, onNext, isFirstPage, isLastPage, lessonP
 const LessonCompleteScreen = () => {
   return (
     <div className="flex flex-1 items-center justify-center">
+      <Confetti
+        width={typeof window !== "undefined" ? window.innerWidth : 0}
+        height={typeof window !== "undefined" ? window.innerHeight : 0}
+        numberOfPieces={200}
+        recycle={false}
+      />
       <div className="flex flex-col max-w-sm w-full items-center text-center p-4 sm:p-8">
         <div className="text-6xl mb-8">🎉</div>
         <h1 className="text-4xl font-semibold tracking-tight text-neutral-900 mb-12">Lesson Complete!</h1>
