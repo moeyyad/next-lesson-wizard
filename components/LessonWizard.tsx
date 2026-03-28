@@ -112,7 +112,7 @@ const LessonCompleteScreen = () => {
       <Confetti
         width={typeof window !== "undefined" ? window.innerWidth : 0}
         height={typeof window !== "undefined" ? window.innerHeight : 0}
-        numberOfPieces={200}
+        numberOfPieces={300}
         recycle={false}
       />
       <div className="flex flex-col max-w-sm w-full items-center text-center p-4 sm:p-8">
