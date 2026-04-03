@@ -18,7 +18,7 @@ export default function LandingPage() {
           Start Lesson
         </Link>
         <a
-          href="https://github.com/moeyyad" // TODO: change to actual repo
+          href="https://github.com/moeyyad/next-lesson-wizard"
           target="_blank"
           rel="noopener noreferrer"
           className="w-fit rounded-full border border-neutral-200 px-8 py-3 text-base text-neutral-700 hover:bg-neutral-50 cursor-pointer"
