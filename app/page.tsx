@@ -7,21 +7,24 @@ export default function LandingPage() {
         <h1 className="text-3xl sm:text-4xl font-bold">Interactive Lessons</h1>
         <p className="text-neutral-900">
           This is a demo of next-lesson-wizard, an open-source project for creating interactive
-          lessons with Next.js 16. The source code is available on{" "}
-          <a
-            href="https://github.com/moeyyad" // TODO: change to actual repo
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-sky-500 font-medium underline underline-offset-4 hover:text-sky-400"
-          >
-            GitHub
-          </a>
+          lessons with Next.js 16. 
         </p>
       </div>
       <div className="flex flex-col space-y-4">
-        <Link href="/intro-to-positive-psych">
-          <span className="text-sky-500 font-medium underline underline-offset-4 hover:text-sky-400">Introduction to Positive Psychology</span>
+        <Link 
+          href="/intro-to-positive-psych"
+          className="w-fit rounded-full bg-neutral-900 px-8 py-3 text-base text-white hover:bg-neutral-700 cursor-pointer"
+        >
+          Start Lesson
         </Link>
+        <a
+          href="https://github.com/moeyyad" // TODO: change to actual repo
+          target="_blank"
+          rel="noopener noreferrer"
+          className="w-fit rounded-full border border-neutral-200 px-8 py-3 text-base text-neutral-700 hover:bg-neutral-50 cursor-pointer"
+        >
+          View Source Code
+        </a>
       </div>
     </div>
   );

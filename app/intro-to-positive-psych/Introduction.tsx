@@ -2,32 +2,28 @@ import LessonPage from "@/components/LessonPage";
 import LessonQuiz from "@/components/LessonQuiz";
 
 export default function Introduction() {
-
-  const question = (
-    <div className="space-y-3">
-      <p>
-        Meadowlands Neighborhood is a community of people who live in the same neighborhood.
-        The community is made up of people of all ages, races, and backgrounds.
-        There are many different types of people in the community, but they all have one thing in common:
-        they all live in the same neighborhood.
-      </p>
-      <h3>Which of the following answers is most correct?</h3>
-    </div>
-  );
-
   return (
     <LessonPage>
-      <LessonQuiz
-        question={question}
-        options={[
-          { id: 1, text: "The study of mental illness" },
-          { id: 2, text: "The study of happiness" },
-          { id: 3, text: "The study of human flourishing" },
-          { id: 4, text: "The study of personality" },
-        ]}
-        correctOptionId={3}
-        explanation="Positive psychology is the scientific study of human flourishing and well-being."
-      />
+      <h1>Introduction to Positive Psychology</h1>
+      <h2>What is positive psychology?</h2>
+      <p>
+        Positive psychology is the scientific study of what makes life most worth living. 
+        It is a relatively new field of psychology that focuses on the study of 
+        human strengths and virtues, rather than the study of mental illness.
+      </p>
+      <h2>What you'll learn in this lesson</h2>
+      <p>
+        Positive psychology is the scientific study of what makes life most worth living. 
+        It is a relatively new field of psychology that focuses on the study of 
+        human strengths and virtues, rather than the study of mental illness.
+      </p>
+      <p>
+        Positive psychology is the scientific study of what makes life most worth living.
+      </p>
+      <p>
+        Positive psychology is the scientific study of what makes life most worth living. 
+        It is a relatively new field of psychology that focuses on the study of 
+      </p>
     </LessonPage>
   );
 }

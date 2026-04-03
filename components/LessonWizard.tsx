@@ -117,10 +117,10 @@ const LessonCompleteScreen = () => {
       />
       <div className="flex flex-col max-w-sm w-full items-center text-center p-4 sm:p-8">
         <div className="text-6xl mb-8">🎉</div>
-        <h1 className="text-4xl font-semibold tracking-tight text-neutral-900 mb-12">Lesson Complete!</h1>
+        <h1 className="text-3xl sm:text-4xl font-semibold tracking-tight text-neutral-900 mb-12">Lesson Complete!</h1>
         <Link 
           href="/"
-          className="flex w-full items-center justify-center gap-2 rounded-full bg-neutral-900 px-4 py-3 text-base text-white hover:bg-neutral-700 cursor-pointer"
+          className="flex sm:w-full items-center justify-center gap-2 rounded-full bg-neutral-900 px-4 py-3 text-base text-white hover:bg-neutral-700 cursor-pointer"
         >
           Continue
           <ArrowRight className="h-4 w-4" />
