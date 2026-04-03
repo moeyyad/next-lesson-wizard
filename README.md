@@ -1,36 +1,34 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# next-lesson-wizard
 
-## Getting Started
+This is an open-source project for building interactive lessons with Next.js 16.
+The goal of this project is to make it easier for anyone to create and share educational content online
+in a way that is highly engaging to the learner.
 
-First, run the development server:
+![Lesson Wizard Screenshot](/public/screenshot.png)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Lesson Design
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Inspired by the design of Duolingo and Brilliant.org, lessons are broken down into short and easily digestible 
+"pages" of content that learners will step through one at a time. By breaking down complex, lengthy, and intimidating topics into these smaller pieces, we can make the learning experience more approachable and engaging.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Components
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+There are only three components in this project that you need to familiarize yourself with in order to 
+create new lessons:
 
-## Learn More
+- LessonWizard
+- LessonPage
+- LessonQuiz
 
-To learn more about Next.js, take a look at the following resources:
+#### LessonWizard
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+LessonWizard is the main component that is used to render the lesson. It takes in a series of LessonPage components as children and renders them in order.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+#### LessonPage
 
-## Deploy on Vercel
+LessonPage is a component that is used to wrap a single page of content. The main purpose of this component is to provide a consistent layout and styling for all lesson pages.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+#### LessonQuiz
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+LessonQuiz is a component that is used to render a quiz and must be used inside of a LessonPage component.
+
