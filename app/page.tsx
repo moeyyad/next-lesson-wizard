@@ -13,7 +13,7 @@ export default function LandingPage() {
       <div className="flex flex-col space-y-4">
         <Link 
           href="/intro-to-positive-psych"
-          className="w-fit rounded-full bg-neutral-900 px-8 py-3 text-base text-white hover:bg-neutral-700 cursor-pointer"
+          className="w-full sm:w-fit text-center rounded-full bg-neutral-900 px-8 py-3 text-base text-white hover:bg-neutral-700 cursor-pointer"
         >
           Start Lesson
         </Link>
@@ -21,9 +21,9 @@ export default function LandingPage() {
           href="https://github.com/moeyyad/next-lesson-wizard"
           target="_blank"
           rel="noopener noreferrer"
-          className="w-fit rounded-full border border-neutral-200 px-8 py-3 text-base text-neutral-700 hover:bg-neutral-50 cursor-pointer"
+          className="w-full sm:w-fit text-center rounded-full border border-neutral-200 px-8 py-3 text-base text-neutral-900 hover:bg-neutral-50 cursor-pointer"
         >
-          View Source Code
+          Source Code
         </a>
       </div>
     </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Puzzle, Brain, Redo2 } from "lucide-react";
 
 import { useLessonWizardContext } from "./LessonWizard";
@@ -22,12 +22,13 @@ type LessonQuizProps = {
 export default function LessonQuiz({
   question,
   options,
-  correctOptionId, // Important: Options are 0-indexed
+  correctOptionId,
   explanation,
   children,
 }: LessonQuizProps) {
   const { setLessonPageStatus } = useLessonWizardContext();
   const [selectedOptionId, setSelectedOptionId] = useState<number | null>(null);
+  const explanationRef = useRef<HTMLDivElement>(null);
 
   const answered = selectedOptionId !== null;
 
@@ -44,6 +45,10 @@ export default function LessonQuiz({
     } else {
       setLessonPageStatus("incorrect");
     }
+
+    setTimeout(() => {
+      explanationRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 50);
   };
 
   const handleTryAgain = () => {
@@ -97,7 +102,7 @@ export default function LessonQuiz({
       </div>
 
       {answered && (
-        <div className="p-4 border border-neutral-200 rounded-xl space-y-4">
+        <div ref={explanationRef} className="p-4 border border-neutral-200 rounded-xl space-y-4">
           <div className="flex items-center gap-2">
             <Brain className="h-5 w-5 text-neutral-400" />
             <h3>Explanation</h3>
