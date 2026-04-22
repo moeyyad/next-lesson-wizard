@@ -51,5 +51,17 @@ body {
 } 
 
 .lesson-content p {
-  @apply text-base text-neutral-900;
+  @apply text-base text-neutral-800;
+}
+
+.lesson-content ul {
+  @apply list-disc pl-6 space-y-2;
+}
+
+.lesson-content ol {
+  @apply list-decimal pl-6 space-y-2;
+}
+
+.lesson-content li {
+  @apply text-sm sm:text-base text-neutral-800;
 }

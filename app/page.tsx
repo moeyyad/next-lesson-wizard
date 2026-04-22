@@ -6,7 +6,7 @@ export default function LandingPage() {
       <div className="pt-8 pb-6 space-y-4">
         <h1 className="text-3xl sm:text-4xl font-bold">Interactive Lessons</h1>
         <p className="text-neutral-900">
-          This is a demo of next-lesson-wizard, an open-source project for creating interactive
+          This is a demo of NextLessonWizard, an open-source project for creating interactive
           lessons with Next.js 16. 
         </p>
       </div>
@@ -15,7 +15,7 @@ export default function LandingPage() {
           href="/intro-to-positive-psych"
           className="w-full sm:w-fit text-center rounded-md bg-neutral-900 px-8 py-3 text-base text-white hover:bg-neutral-700 cursor-pointer"
         >
-          Start Lesson
+          Start Demo
         </Link>
         <a
           href="https://github.com/moeyyad/next-lesson-wizard"
