@@ -6,6 +6,8 @@ for building the next "Duolingo for X."
 
 ![Lesson Wizard Screenshot](/public/screenshot.png)
 
+> You can see a live demo [here](https://wizard.moeyyad.com)
+
 ## Getting Started
 
 Copy and paste the following 4 lines of code into your terminal and you can get it running on `localhost`
